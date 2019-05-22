@@ -12,8 +12,12 @@ for (let i = 0; i < modalClose.length; i++) {
         modal_success.className = 'modal';  
     }
 }
-modal_main.onclick = function() {
-    modal_main.className = 'modal';
-    modal_success.className = 'modal modal_active';
-}
 
+const btn_danger = document.getElementsByClassName('btn btn_danger');
+const btnDanger = Array.from(btn_danger);
+for (let i = 0; i < modalClose.length; i++) {
+    btnDanger[i].onclick = function() {
+        modal_main.className = 'modal';
+        modal_success.className = 'modal modal_active';
+    }
+}
