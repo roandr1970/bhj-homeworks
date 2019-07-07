@@ -9,7 +9,7 @@ slider_arrow_prev[0].onclick = function() {
         if (sliderItem[i].className.includes('slider__item slider__item_active')) {
             sliderItem[i].className = "slider__item";
             if (i == 0) {
-                per = 4;
+                per = sliderItem.length - 1;
             } else per = i - 1;
             sliderItem[per].className = "slider__item slider__item_active"; 
             break;
