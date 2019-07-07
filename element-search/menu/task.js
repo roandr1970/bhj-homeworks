@@ -1,21 +1,15 @@
-//const menu_link = document.getElementsByClassName('menu__link');
-
-const menu_item = document.getElementsByClassName('menu_item');
-
-let menu_sub = document.querySelectorAll('menu_sub');
-//console.log(menu_sub);
-
+const menu_item = document.getElementsByClassName('menu__item');
+const elements = document.querySelectorAll('li > ul');
 menuItem = Array.from(menu_item);
-
-menuSub = Array.from(menu_sub);
-
+//console.log(menuItem);
+Elements = Array.from(elements);
+//console.log(Elements);
 for (let i = 0; i < menuItem.length; i++) {
     menuItem[i].onclick = function() {
-        console.log('Сработало');
-        menuSub = document.querySelector('menu_sub');
-        console.log(menuSub.closest('menu_item'));
-        if (menuSub.closest('menu_item') == '<li class="menu__item">...</li>') {
-            menuSub.className = "menu menu_sub menu_active";
+        let element = document.querySelector('li > ul');
+        //console.log (element);
+        if (element == 'ul class="menu menu_sub"') {
+            element.className = "menu menu_sub menu_active";
         }
     }
 }
