@@ -18,22 +18,15 @@ class Game {
 
   registerEvents() {
     this.currentSymbol = this.container.querySelector(".symbol");
-    console.log(this.currentSymbol);
 
-    function symbolCod(event) {
-      let symbolCode = event.keyCode;
-      let symb = String.fromCharCode(symbolCode);
-      return simb;
+    var symbolCod = event => {
+      let symb = String.fromCharCode(event.keyCode);
+      if (symb.toLowerCase() == this.currentSymbol.textContent.toLowerCase()) {
+        this.success();
+      } else {
+         this.fail();
+      }
     }
-
-    let s = symbolCod(event);
-
-    if (s.toLowerCase() == this.currentSymbol.textContent.toLowerCase()) {
-      this.success();
-    } else {
-        this.fail();
-    }
-   
     document.addEventListener('keydown', symbolCod);
   }
 
