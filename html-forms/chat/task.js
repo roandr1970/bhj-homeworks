@@ -1,9 +1,11 @@
 const chat_widget = document.getElementsByClassName('chat-widget');
+const chat_widget_input = document.getElementById('chat-widget__input');
 chat_widget[0].addEventListener('click', function(event) {
     chat_widget[0].classList.toggle("chat-widget_active");
+    chat_widget_input.focus();
 })
 
-let chat_widget_input = document.getElementById('chat-widget__input');
+
 const messages = document.querySelector( '.chat-widget__messages' );
 let hours = (new Date()).getHours();
 let minutes = (new Date()).getMinutes();
