@@ -1,16 +1,13 @@
 const has_tooltip = document.getElementsByClassName('has-tooltip');
+const tooltip = document.getElementsByClassName('tooltip')[0];
 
 for (let i = 0; i < has_tooltip.length; i++) {
     has_tooltip[i].addEventListener('click', (event) => {
         event.preventDefault();
-        let tooltip = has_tooltip[i].getAttribute('title');
-        let tooltipElem = document.createElement('div');
-        tooltipElem.classList.toggle("tooltip_active");
-        tooltipElem.innerHTML += '<div class="tooltip" style=" left: 0; top: 0">' + tooltip + '</div>';
-        has_tooltip[i].appendChild(tooltipElem); 
-        tooltipElem.classList.toggle("tooltip_active");
-        //console.log(tooltipElem.className);
-    })
-
-    
+        const tooltip_text = has_tooltip[i].getAttribute('title');
+        tooltip.classList.toggle("tooltip_active");
+        tooltip.style.left = has_tooltip[i].getBoundingClientRect().left + "px";
+        tooltip.style.top = (has_tooltip[i].getBoundingClientRect().top + 15) + "px";
+        tooltip.innerHTML = '<div class="tooltip tooltip_active">' + tooltip_text + '</div>';
+    })    
 }
