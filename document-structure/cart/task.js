@@ -8,9 +8,7 @@ const product_image = document.getElementsByClassName('product__image');
 for (let i = 0; i < quantity_control_inc.length; i++) {
     quantity_control_inc[i].addEventListener('click', (event) =>  {
 
-        //const product = quantity_control_inc[i].closest('.product').dataset.id;
         const amountGoods = Number.parseInt(product_quantit_value[i].innerText) + 1;
-
         product_quantit_value[i].innerText = String(amountGoods);
     })
 }
@@ -18,19 +16,15 @@ for (let i = 0; i < quantity_control_inc.length; i++) {
 for (let i = 0; i < quantity_control_dec.length; i++) {
     quantity_control_dec[i].addEventListener('click', (event) =>  {
 
-        //const product = quantity_control_inc[i].closest('.product').dataset.id;
         const amountGoods = Number.parseInt(product_quantit_value[i].innerText) - 1;
-
         if(amountGoods > 0) {
             product_quantit_value[i].innerText = String(amountGoods);
         } else product_quantit_value[i].innerText = 1;
     })
 }    
 let summa;
-let a = 0;
-let b = 0;
-let arrId1 = [];
-let arrId2 = [];
+let sumId1 = 0;
+let sumId2 = 0;
 for (let j = 0; j < product_add.length; j++) {
     product_add[j].addEventListener('click', (event) =>  {
         const product_id = product_add[j].closest('.product').dataset.id;
@@ -39,11 +33,11 @@ for (let j = 0; j < product_add.length; j++) {
         inputElement.classList.add('cart__product');
         summa = Number.parseInt(product_quantit_value[j].innerText);
         if (product_id == 1) {
-            summa = Number.parseInt(product_quantit_value[j].innerText) + a;
-            a = summa;
+            summa = Number.parseInt(product_quantit_value[j].innerText) + sumId1;
+            sumId1 = summa;
         } else {
-            summa = Number.parseInt(product_quantit_value[j].innerText) + b;
-            b = summa;
+            summa = Number.parseInt(product_quantit_value[j].innerText) + sumId2;
+            sumId2 = summa;
         }
         inputElement.innerHTML +=`
             <div class="cart__product" data-id="` + product_id + `">
@@ -51,19 +45,12 @@ for (let j = 0; j < product_add.length; j++) {
                 <div class="cart__product-count">` + summa + `</div>
             </div>`
         cart_products.appendChild(inputElement);
-        
-        if (product_id == 1) {
-            arrId1.push(inputElement);
-            if (arrId1.length > 1 ) { 
-                arrId1[1].previousElementSibling.remove();
-                arrId1.shift();       
-            }
+
+        const deleteElement = inputElement.previousElementSibling.querySelector('.cart__product[data-id="'+product_id+'"]');
+        if (deleteElement) {
+            deleteElement.remove();
         } else {
-            arrId2.push(inputElement);
-            if (arrId2.length > 1 ) {
-                arrId2[1].previousElementSibling.remove();
-                arrId2.shift();   
-            }
+            deleteElement.previousElementSibling.remove();
         }
         
     })
