@@ -14,17 +14,20 @@ tasks_add.addEventListener('click', (event) =>  {
         </div>`
     tasks_list.appendChild(inputElement);
     
-    const task_remove = document.getElementsByClassName('task__remove');
+    const task_remove = inputElement.getElementsByClassName('task__remove');
     const taskRemove = Array.from(task_remove);
     for (let i = 0; i < taskRemove.length; i++) {
         taskRemove[i].addEventListener('click', () => {
             let deleteElement = taskRemove[i].closest('.task');
+            console.log(deleteElement);
             deleteElement.remove();
         })
     } 
 
     task_input.value = '';
 })
+
+
 
 
 
