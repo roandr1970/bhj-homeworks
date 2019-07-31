@@ -23,29 +23,26 @@ for (let i = 0; i < quantity_control_dec.length; i++) {
     })
 }    
 let summa;
-let sumId1 = 0;
-let sumId2 = 0;
+let sumId = [];
 for (let j = 0; j < product_add.length; j++) {
     product_add[j].addEventListener('click', (event) =>  {
         const product_id = product_add[j].closest('.product').dataset.id;
         const image = product_image[j].getAttribute('src');
         let inputElement = document.createElement('div');
         inputElement.classList.add('cart__product');
-        summa = Number.parseInt(product_quantit_value[j].innerText);
-        if (product_id == 1) {
-            summa = Number.parseInt(product_quantit_value[j].innerText) + sumId1;
-            sumId1 = summa;
-        } else {
-            summa = Number.parseInt(product_quantit_value[j].innerText) + sumId2;
-            sumId2 = summa;
+        if (sumId[product_id] == undefined) {
+            sumId[product_id] = 0;
         }
+        summa = 0;
+        summa = Number.parseInt(product_quantit_value[j].innerText) + sumId[product_id];
+        sumId[product_id] = summa;
         inputElement.innerHTML +=`
             <div class="cart__product" data-id="` + product_id + `">
                 <img class="cart__product-image" src="` + image + `">
                 <div class="cart__product-count">` + summa + `</div>
             </div>`
         cart_products.appendChild(inputElement);
-
+        
         const deleteElement = inputElement.previousElementSibling.querySelector('.cart__product[data-id="'+product_id+'"]');
         if (deleteElement) {
             deleteElement.remove();
