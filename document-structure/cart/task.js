@@ -42,14 +42,15 @@ for (let j = 0; j < product_add.length; j++) {
                 <div class="cart__product-count">` + summa + `</div>
             </div>`
         cart_products.appendChild(inputElement);
-        
-        const deleteElement = inputElement.previousElementSibling.querySelector('.cart__product[data-id="'+product_id+'"]');
-        if (deleteElement) {
-            deleteElement.remove();
-        } else {
-            deleteElement.previousElementSibling.remove();
+
+        if (inputElement.previousElementSibling) {
+            const deleteElement = inputElement.previousElementSibling.querySelector('.cart__product[data-id="'+product_id+'"]');
+            if (deleteElement) {
+                deleteElement.remove();
+            } 
+            
         }
-        
+
     })
 }
     
